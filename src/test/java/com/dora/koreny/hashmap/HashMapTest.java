@@ -27,6 +27,13 @@ class HashMapTest {
     }
 
     @Test
+    public void testDifferentKeysHaveSameHashCode() {
+        int firstHashedKey = hashMap.getHash("FB");
+        int secondHashedKey = hashMap.getHash("Ea");
+        assertEquals(firstHashedKey, secondHashedKey);
+    }
+
+    @Test
     public void testPutIfKeyDoesNotExists() {
         int position = hashMap.getBucketIndex("Key");
         hashMap.put("Key", 1);
@@ -45,13 +52,13 @@ class HashMapTest {
         int bucketIndex = hashMap.getBucketIndex("FB");
         hashMap.put("FB", 1);
         hashMap.put("Ea", 2);
-        assertTrue(hashMap.getBucketArray()[bucketIndex].size() == 2);
+        assertEquals(2, hashMap.getBucketArray()[bucketIndex].size());
     }
 
     @Test
     public void getValueByKeySuccess() {
         hashMap.put("Key", 1);
-        assertTrue(hashMap.getValue("Key").equals(1));
+        assertEquals(1, (int) hashMap.getValue("Key"));
     }
 
     @Test
@@ -65,4 +72,19 @@ class HashMapTest {
         hashMap.put("FB", 1);
         assertThrows(KeyNotFound.class, () -> hashMap.getValue("Ea"));
     }
+
+    @Test
+    public void removeSuccessful() {
+        hashMap.put("FB", 1);
+        hashMap.put("Ea", 2);
+        int bucketIndex = hashMap.getBucketIndex("FB");
+        hashMap.remove("FB");
+        assertEquals(hashMap.getBucketArray()[bucketIndex].size(), 1);
+    }
+
+    @Test
+    public void removeFailsBucketIsEmpty() {
+        assertThrows(NullPointerException.class, () -> hashMap.remove("Key"));
+    }
+
 }

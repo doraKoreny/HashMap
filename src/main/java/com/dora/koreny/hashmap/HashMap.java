@@ -67,4 +67,18 @@ public class HashMap<K, V> {
         }
     }
 
+    public void remove(K key) {
+        int bucketIndex = getBucketIndex(key);
+        LinkedList<KeyValue<K,V>> bucket = bucketArray[bucketIndex];
+        if (bucket != null) {
+            for (KeyValue<K, V> keyValue : bucket) {
+                if (keyValue.getKey() == key) {
+                    bucket.remove(keyValue);
+                }
+            }
+        } else {
+            throw new NullPointerException("Key not found, bucket is empty!");
+        }
+    }
+
 }
