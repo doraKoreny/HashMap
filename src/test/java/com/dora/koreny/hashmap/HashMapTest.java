@@ -87,4 +87,15 @@ class HashMapTest {
         assertThrows(NullPointerException.class, () -> hashMap.remove("Key"));
     }
 
+    @Test
+    public void clearAllSuccess() {
+        hashMap.put("FB", 1);
+        hashMap.put("Ea", 2);
+        hashMap.put("Key", 3);
+        hashMap.clearAll();
+        assertNull(hashMap.getBucketArray()[hashMap.getBucketIndex("FB")]);
+        assertNull(hashMap.getBucketArray()[hashMap.getBucketIndex("Ea")]);
+        assertNull(hashMap.getBucketArray()[hashMap.getBucketIndex("Key")]);
+    }
+
 }

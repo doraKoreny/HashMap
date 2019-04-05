@@ -81,4 +81,8 @@ public class HashMap<K, V> {
         }
     }
 
+    public void clearAll() {
+        bucketArray = new LinkedList[bucketArraySize];
+    }
+    
 }
