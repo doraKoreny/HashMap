@@ -31,8 +31,12 @@ public class HashMap<K, V> {
         }
     }
 
+    public int getHash(K key) {
+        return key.hashCode();
+    }
+
     public int getBucketIndex(K key) {
-        return Math.abs(key.hashCode() % bucketArraySize);
+        return Math.abs(getHash(key) % bucketArraySize);
     }
 
     public boolean bucketContainsKeyValue(LinkedList<KeyValue<K,V>> bucket, K key) {
