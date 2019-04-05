@@ -26,8 +26,11 @@ public class HashMap<K, V> {
             bucket.add(new KeyValue(key, value));
             bucketArray[position] = bucket;
         } else {
-            if (bucketContainsKeyValue(bucket, key)) {
+            if (bucketContainsKey(bucket, key)) {
                 throw new KeyAlreadyExistsException();
+            } else {
+                bucket.add(new KeyValue(key, value));
+                bucketArray[position] = bucket;
             }
         }
     }
@@ -40,7 +43,7 @@ public class HashMap<K, V> {
         return Math.abs(getHash(key) % bucketArraySize);
     }
 
-    public boolean bucketContainsKeyValue(LinkedList<KeyValue<K,V>> bucket, K key) {
+    public boolean bucketContainsKey(LinkedList<KeyValue<K,V>> bucket, K key) {
         for (KeyValue keyValue : bucket) {
             if (keyValue.getKey() == key) {
                 return true;

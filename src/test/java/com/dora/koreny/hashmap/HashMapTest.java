@@ -31,13 +31,21 @@ class HashMapTest {
         int position = hashMap.getBucketIndex("Key");
         hashMap.put("Key", 1);
         LinkedList bucket = hashMap.getBucketArray()[position];
-        assertTrue(hashMap.bucketContainsKeyValue(bucket, "Key"));
+        assertTrue(hashMap.bucketContainsKey(bucket, "Key"));
     }
 
     @Test
     public void testPutIfKeyAlreadyExistsThrowException() {
         hashMap.put("Key", 1);
         assertThrows(KeyAlreadyExistsException.class, () -> hashMap.put("Key", 2));
+    }
+
+    @Test
+    public void testPutIfBucketNotEmptyAndKeyDoesNotExist() {
+        int bucketIndex = hashMap.getBucketIndex("FB");
+        hashMap.put("FB", 1);
+        hashMap.put("Ea", 2);
+        assertTrue(hashMap.getBucketArray()[bucketIndex].size() == 2);
     }
 
     @Test
