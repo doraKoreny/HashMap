@@ -1,3 +1,16 @@
+
+# User-specific stuff
+.idea/**/workspace.xml
+.idea/**/vcs.xml
+.idea/**/misc.xml
+.idea/**/encodings.xml
+.idea/**/compiler.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/**/dictionaries
+.idea/**/shelf
+
+
 # Compiled source #
 ###################
 *.com
