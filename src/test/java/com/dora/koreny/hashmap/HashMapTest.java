@@ -47,8 +47,14 @@ class HashMapTest {
     }
 
     @Test
-    public void getValueFails() {
+    public void getValueByKeyFailsBucketIsEmpty() {
         hashMap.put("Key", 1);
-        assertThrows(KeyNotFound.class, () -> hashMap.getValue("Key2"));
+        assertThrows(NullPointerException.class, () -> hashMap.getValue("Key2"));
+    }
+
+    @Test
+    public void getValueByKeyFailsKeyNotFoundInBucket() {
+        hashMap.put("FB", 1);
+        assertThrows(KeyNotFound.class, () -> hashMap.getValue("Ea"));
     }
 }
