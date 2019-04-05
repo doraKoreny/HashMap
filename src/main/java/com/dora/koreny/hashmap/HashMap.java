@@ -52,12 +52,16 @@ public class HashMap<K, V> {
     public V getValue(K key) {
         int bucketIndex = getBucketIndex(key);
         LinkedList<KeyValue<K, V>> bucket = bucketArray[bucketIndex];
-        for (KeyValue<K, V> keyValue : bucket) {
-            if (keyValue.getKey() == key) {
-                return keyValue.getValue();
+        if (bucket != null) {
+            for (KeyValue<K, V> keyValue : bucket) {
+                if (keyValue.getKey() == key) {
+                    return keyValue.getValue();
+                }
             }
+            throw new KeyNotFound();
+        } else {
+            throw new NullPointerException("Key not found, bucket is empty");
         }
-        throw new KeyNotFound();
     }
 
 }
