@@ -1,6 +1,7 @@
 package com.dora.koreny.hashmap;
 
 import com.dora.koreny.exceptions.KeyAlreadyExistsException;
+import com.dora.koreny.exceptions.KeyNotFound;
 
 import java.util.LinkedList;
 
@@ -46,6 +47,17 @@ public class HashMap<K, V> {
             }
         }
         return false;
+    }
+
+    public V getValue(K key) {
+        int bucketIndex = getBucketIndex(key);
+        LinkedList<KeyValue<K, V>> bucket = bucketArray[bucketIndex];
+        for (KeyValue<K, V> keyValue : bucket) {
+            if (keyValue.getKey() == key) {
+                return keyValue.getValue();
+            }
+        }
+        throw new KeyNotFound();
     }
 
 }
