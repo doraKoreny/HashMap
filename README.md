@@ -1,9 +1,7 @@
  # The secret behind HashMap 
  
-In Codecool we had an assignment, which I found really useful. 
-
-This project's purpose is about to learn the internal working of HashMap data structure. HashMap can store key-value pairs. 
-I have been using it quite often, but I didn't really know what is going on under the hood. 
+The purpose of this project is to learn the internal working of HashMap data structure. HashMap can store key-value pairs. 
+I have been using it quite often, but I didn't really know what is going on under the hood so I wanted to figure it out for myself.
 
 ## How does HashMap work?
 
